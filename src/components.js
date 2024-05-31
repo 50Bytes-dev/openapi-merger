@@ -104,6 +104,7 @@ class ComponentNameResolver {
       if (cmps.length === 1) {
         cToName[cmps[0].url] = name;
       } else {
+        cToName[cmps[0].url] = name;
         log.warn(`conflicted component name "${name}" ignored`);
       }
       // else {
