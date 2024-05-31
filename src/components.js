@@ -105,7 +105,7 @@ class ComponentNameResolver {
         cToName[cmps[0].url] = name;
       } else {
         cToName[cmps[0].url] = name;
-        log.warn(`conflicted component name "${name}" ignored`);
+        log.warn(`conflicted component name "${name}" skipped. url=${cmps[0].url}`);
       }
       // else {
       //   cmps.sort((f, s) => strCmp(f.url, s.url));
