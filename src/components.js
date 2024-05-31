@@ -100,16 +100,22 @@ class ComponentNameResolver {
     const cToName = {};
     for (const [key, cmps] of Object.entries(nameToCmps)) {
       const [name] = key.split(",");
+
+      cToName[cmps[0].url] = name;
+      
       if (cmps.length === 1) {
-        cToName[cmps[0].url] = name;
+        
       } else {
-        cmps.sort((f, s) => strCmp(f.url, s.url));
-        for (let i = 0; i < cmps.length; i++) {
-          const resolved = `${name}${i + 1}`;
-          cToName[cmps[i].url] = resolved;
-          log.warn(`conflicted component name "${name}" resolved to "${resolved}". url=${cmps[i].url}`);
-        }
+        log.warn(`conflicted component name "${name}" ignored`);
       }
+      // else {
+      //   cmps.sort((f, s) => strCmp(f.url, s.url));
+      //   for (let i = 0; i < cmps.length; i++) {
+      //     const resolved = `${name}${i + 1}`;
+      //     cToName[cmps[i].url] = resolved;
+      //     log.warn(`conflicted component name "${name}" resolved to "${resolved}". url=${cmps[i].url}`);
+      //   }
+      // }
     }
     return cToName;
   }
